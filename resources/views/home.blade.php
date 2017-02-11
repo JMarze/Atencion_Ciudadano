@@ -20,3 +20,10 @@
 		</div>
 	</div>
 @endsection
+
+@section('scripts')
+@parent
+<script>
+    $('#home').addClass('active');
+</script>
+@endsection

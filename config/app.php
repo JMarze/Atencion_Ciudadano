@@ -161,6 +161,16 @@ return [
          */
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
 
+        /*
+         * LaravelCollective
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * Laracasts - Flash
+         */
+        Laracasts\Flash\FlashServiceProvider::class,
+
     ],
 
     /*
@@ -211,6 +221,12 @@ return [
          * AdminLTE
          */
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+
+        /*
+         * LaravelCollective
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

@@ -43,6 +43,7 @@ desired effect
 
         <!-- Main content -->
         <section class="content">
+            @include('flash::message')
             <!-- Your Page Content Here -->
             @yield('main-content')
         </section><!-- /.content -->
