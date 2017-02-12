@@ -22,7 +22,7 @@
     </div><!-- /.box-header -->
 
     <div class="box-body">
-        <table class="table" id="table-usuarios">
+        <table class="table">
             <tr>
                 <th>Nombre</th>
                 <th></th>

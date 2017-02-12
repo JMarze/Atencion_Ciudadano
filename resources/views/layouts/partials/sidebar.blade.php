@@ -47,6 +47,12 @@
                 </a>
             </li>
 
+            <li id="puntos">
+                <a href="{{ route('punto_atencion.index') }}">
+                    <i class='fa fa-cube'></i> <span>Puntos de Atención</span>
+                </a>
+            </li>
+
             <!--<li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

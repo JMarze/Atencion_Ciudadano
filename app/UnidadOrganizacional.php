@@ -12,4 +12,10 @@ class UnidadOrganizacional extends Model
     protected $table = 'unidades_organizacionales';
 
     protected $fillable = ['nombre'];
+
+    /* Relationships */
+    // 1 -> N (N)
+    public function puntosAtencion(){
+        return $this->hasMany('App\PuntoAtencion');
+    }
 }

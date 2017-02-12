@@ -114,6 +114,10 @@ class UnidadOrganizacionalController extends Controller
         try{
             $unidad = UnidadOrganizacional::find($id);
 
+            foreach($unidad->puntosAtencion as $punto){
+                $punto->delete();
+            }
+
             $unidad->delete();
 
             flash('Se eliminó el registro de la unidad organizacional ' . $unidad->nombre, 'danger');

@@ -24,4 +24,7 @@ Route::group([], function () {
 
     /* Unidades Organizacionales */
     Route::resource('unidad', 'UnidadOrganizacionalController');
+
+    /* Puntos de Atención */
+    Route::resource('punto_atencion', 'PuntoAtencionController');
 });
