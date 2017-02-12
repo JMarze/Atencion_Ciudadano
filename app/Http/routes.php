@@ -21,4 +21,7 @@ Route::group([], function () {
 
     /* Usuarios */
     Route::resource('usuario', 'UsuarioController');
+
+    /* Unidades Organizacionales */
+    Route::resource('unidad', 'UnidadOrganizacionalController');
 });

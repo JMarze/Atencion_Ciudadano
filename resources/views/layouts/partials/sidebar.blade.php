@@ -41,6 +41,12 @@
                 </a>
             </li>
 
+            <li id="unidades">
+                <a href="{{ route('unidad.index') }}">
+                    <i class='fa fa-cubes'></i> <span>Unidades Organizacionales</span>
+                </a>
+            </li>
+
             <!--<li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

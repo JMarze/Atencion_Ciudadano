@@ -76,7 +76,5 @@
 @parent
 <script>
     $('#usuarios').addClass('active');
-
-    $('#table-usuarios').DataTable();
 </script>
 @endsection
