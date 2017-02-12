@@ -9,6 +9,7 @@
 @endsection
 
 @section('main-content')
+@if(count($usuarios) > 0)
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">
@@ -21,7 +22,7 @@
     </div><!-- /.box-header -->
 
     <div class="box-body">
-        <table class="table">
+        <table class="table" id="table-usuarios">
             <tr>
                 <th>Usuario</th>
                 <th>Nombre Completo</th>
@@ -63,11 +64,19 @@
         </table>
     </div><!-- /.box-body -->
 </div><!-- /.box -->
+@else
+<div class="callout callout-info">
+    <h4><i class="fa fa-database"></i> Whoops!</h4>
+    <p>No se encontraron registros para mostrar, intenta <a href="{{ route('usuario.create') }}">agregar</a> un nuevo usuario</p>
+</div>
+@endif
 @endsection
 
 @section('scripts')
 @parent
 <script>
     $('#usuarios').addClass('active');
+
+    $('#table-usuarios').DataTable();
 </script>
 @endsection

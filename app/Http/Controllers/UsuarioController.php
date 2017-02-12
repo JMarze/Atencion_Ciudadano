@@ -18,9 +18,14 @@ class UsuarioController extends Controller
      */
     public function index(Request $request)
     {
-        $usuarios = User::orderBy('type', 'ASC')->where('id', '<>', $request->user()->id)->get();
+        if($request->user()){
+            $usuarios = User::orderBy('type', 'ASC')->where('id', '<>', $request->user()->id)->get();
 
-        return view('usuario.index')->with('usuarios', $usuarios);
+            return view('usuario.index')->with('usuarios', $usuarios);
+        }else{
+            return redirect('/');
+        }
+
     }
 
     /**
