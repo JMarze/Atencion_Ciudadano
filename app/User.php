@@ -23,4 +23,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /* Relationships */
+    // 1 -> N (N)
+    public function fichasDiagnostico(){
+        return $this->hasMany('App\FichaDiagnostico');
+    }
 }

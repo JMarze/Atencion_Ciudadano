@@ -27,4 +27,7 @@ Route::group([], function () {
 
     /* Puntos de Atención */
     Route::resource('punto_atencion', 'PuntoAtencionController');
+
+    /* Fichas Diagnóstico */
+    Route::resource('ficha_diagnostico', 'FichaDiagnosticoController');
 });
