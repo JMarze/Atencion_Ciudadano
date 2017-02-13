@@ -18,4 +18,9 @@ class UnidadOrganizacional extends Model
     public function puntosAtencion(){
         return $this->hasMany('App\PuntoAtencion');
     }
+
+    // 1 -> N (N)
+    public function usuarios(){
+        return $this->hasMany('App\User');
+    }
 }

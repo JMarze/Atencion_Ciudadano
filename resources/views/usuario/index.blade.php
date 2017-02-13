@@ -28,6 +28,7 @@
                 <th>Nombre Completo</th>
                 <th>Correo Electrónico</th>
                 <th>Nivel</th>
+                <th>Unidad Organizacional</th>
                 <th></th>
             </tr>
 
@@ -49,6 +50,7 @@
                     <span class="label label-warning">jefe</span>
                     @endif
                 </td>
+                <td>{{ $usuario->unidadOrganizacional->nombre }}</td>
                 <td>
                     <div class="btn-group" role="group">
                         <a href="{{ route('usuario.edit', $usuario->id) }}" class="btn btn-sm btn-warning" type="button">

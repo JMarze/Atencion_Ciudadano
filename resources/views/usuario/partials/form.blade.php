@@ -27,3 +27,8 @@
     {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirmar Contraseña', 'id' => 'password_confirmation']) !!}
     <i class="fa fa-key form-control-feedback"></i>
 </div>
+
+<div class="form-group has-feedback{{ $errors->has('unidad_organizacional_id')?' has-error':'' }}">
+    {!! Form::select('unidad_organizacional_id', $unidades, old('unidad_organizacional_id'), ['class' => 'form-control', 'placeholder' => 'Unidad Organizacional']) !!}
+    <i class="fa fa-cubes form-control-feedback"></i>
+</div>

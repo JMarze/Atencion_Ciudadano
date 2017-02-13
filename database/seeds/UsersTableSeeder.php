@@ -17,6 +17,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'arze.jesus@gmail.com',
             'type' => 'admin',
             'password' => bcrypt('123456'),
+
+            'unidad_organizacional_id' => 1,
         ]);
     }
 }

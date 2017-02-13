@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'type', 'password',
+        'name', 'username', 'email', 'type', 'password', 'unidad_organizacional_id'
     ];
 
     /**
@@ -28,5 +28,10 @@ class User extends Authenticatable
     // 1 -> N (N)
     public function fichasDiagnostico(){
         return $this->hasMany('App\FichaDiagnostico');
+    }
+
+    // 1 -> N (1)
+    public function unidadOrganizacional(){
+        return $this->belongsTo('App\UnidadOrganizacional');
     }
 }

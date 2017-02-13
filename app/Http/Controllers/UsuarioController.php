@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 
 use App\User;
+use App\UnidadOrganizacional;
 
 class UsuarioController extends Controller
 {
@@ -35,7 +36,9 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuario.create');
+        $unidades = UnidadOrganizacional::orderBy('nombre', 'ASC')->pluck('nombre', 'id');
+
+        return view('usuario.create')->with('unidades', $unidades);
     }
 
     /**
@@ -85,8 +88,9 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = User::find($id);
+        $unidades = UnidadOrganizacional::orderBy('nombre', 'ASC')->pluck('nombre', 'id');
 
-        return view('usuario.edit')->with('usuario', $usuario);
+        return view('usuario.edit')->with('usuario', $usuario)->with('unidades', $unidades);
     }
 
     /**

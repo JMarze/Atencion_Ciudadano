@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->enum('type', ['admin', 'tecnico', 'tecnico_web', 'jefe']);
             $table->string('password');
+
+            /* Foreign Key */
+            $table->integer('unidad_organizacional_id')->unsigned();
+            $table->foreign('unidad_organizacional_id')->references('id')
+                ->on('unidades_organizacionales');
+
             $table->rememberToken();
             $table->timestamps();
         });

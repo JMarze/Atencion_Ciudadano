@@ -28,6 +28,8 @@ class UserRequest extends Request
             'username' => 'required|string|between:3,250',
             'email' => 'required|email|between:3,250',
             'type' => 'required|in:admin,tecnico,tecnico_web,jefe',
+
+            'unidad_organizacional_id' => 'required|exists:unidades_organizacionales,id',
         ];
     }
 }
