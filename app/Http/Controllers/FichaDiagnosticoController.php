@@ -16,8 +16,24 @@ use Carbon\Carbon;
 
 class FichaDiagnosticoController extends Controller
 {
-    public function __construct(){
+    public function __construct(Request $request){
         Carbon::setLocale('es');
+
+        // index: admin, tecnico, jefe
+        // create, store: tecnico
+        // edit, update: jefe
+        // show, destroy: admin
+        $this->middleware('admin', ['only' => [
+            'show', 'destroy',
+        ]]);
+
+        $this->middleware('tecnico', ['only' => [
+            'create', 'store',
+        ]]);
+
+        $this->middleware('jefe', ['only' => [
+            'edit', 'update',
+        ]]);
     }
     /**
      * Display a listing of the resource.

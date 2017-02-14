@@ -12,6 +12,9 @@ use App\UnidadOrganizacional;
 
 class PuntoAtencionController extends Controller
 {
+    public function __construct(){
+        $this->middleware('tecnico');
+    }
     /**
      * Display a listing of the resource.
      *
