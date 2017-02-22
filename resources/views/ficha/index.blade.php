@@ -62,6 +62,9 @@
                         <a href="{{ route('ficha_diagnostico.show', $ficha->id) }}" class="btn btn-sm btn-danger" type="button">
                             <i class="fa fa-trash"></i>
                         </a>
+                        <a href="{{ route('ficha_diagnostico.pdf', $ficha->id) }}" class="btn btn-sm btn-info" type="button">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </a>
                     </div>
                 </td>
             </tr>

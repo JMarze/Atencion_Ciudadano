@@ -154,4 +154,20 @@ class FichaDiagnosticoController extends Controller
 
         return redirect()->route('ficha_diagnostico.index');
     }
+
+    /**
+     * Display PDF
+     *
+     * @param int $idFichaDiagnostico
+     * @return \Illuminate\Http\Response
+     */
+    public function pdf($idFichaDiagnostico){
+        $ficha = FichaDiagnostico::find($idFichaDiagnostico);
+        $view = \View::make('ficha.pdf', compact('ficha'))->render();
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        return $pdf->stream('Ficha_' . $ficha->id . '.pdf');
+    }
 }

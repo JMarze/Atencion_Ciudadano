@@ -171,6 +171,11 @@ return [
          */
         Laracasts\Flash\FlashServiceProvider::class,
 
+        /*
+         * DomPdf
+         */
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -227,6 +232,11 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        /*
+         * DomPDF
+         */
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
