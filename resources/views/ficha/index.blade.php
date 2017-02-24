@@ -29,6 +29,7 @@
                 <th>Tipo</th>
                 <th>Elaborado por</th>
                 <th>Revisado por</th>
+                <th>Exportar</th>
                 <th></th>
             </tr>
 
@@ -59,11 +60,18 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group">
+                        <a href="{{ route('ficha_diagnostico.pdf', $ficha->id) }}" class="btn btn-sm btn-danger" type="button">
+                            <i class="fa fa-file-pdf-o"></i> Pdf
+                        </a>
+                        <a href="{{ route('ficha_diagnostico.excel', $ficha->id) }}" class="btn btn-sm btn-success" type="button">
+                            <i class="fa fa-file-excel-o"></i> Excel
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="btn-group" role="group">
                         <a href="{{ route('ficha_diagnostico.show', $ficha->id) }}" class="btn btn-sm btn-danger" type="button">
                             <i class="fa fa-trash"></i>
-                        </a>
-                        <a href="{{ route('ficha_diagnostico.pdf', $ficha->id) }}" class="btn btn-sm btn-info" type="button">
-                            <i class="fa fa-file-pdf-o"></i>
                         </a>
                     </div>
                 </td>

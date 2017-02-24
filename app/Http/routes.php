@@ -31,4 +31,5 @@ Route::group([], function () {
     /* Fichas Diagnóstico */
     Route::resource('ficha_diagnostico', 'FichaDiagnosticoController');
     Route::get('ficha_diagnostico/pdf/{fichaDignostico}', 'FichaDiagnosticoController@pdf')->name('ficha_diagnostico.pdf');
+    Route::get('ficha_diagnostico/excel/{fichaDignostico}', 'FichaDiagnosticoController@excel')->name('ficha_diagnostico.excel');
 });

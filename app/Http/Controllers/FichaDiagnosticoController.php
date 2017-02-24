@@ -14,6 +14,8 @@ use DB;
 
 use Carbon\Carbon;
 
+use Excel;
+
 class FichaDiagnosticoController extends Controller
 {
     public function __construct(Request $request){
@@ -169,5 +171,21 @@ class FichaDiagnosticoController extends Controller
         $pdf->loadHTML($view);
 
         return $pdf->stream('Ficha_' . $ficha->id . '.pdf');
+    }
+
+    /**
+     * Download Excel
+     *
+     * @param int $idFichaDiagnostico
+     * @return \Illuminate\Http\Response
+     */
+    public function excel($idFichaDiagnostico){
+        $ficha = FichaDiagnostico::find($idFichaDiagnostico);
+
+        Excel::create('FichaDiagnóstico_' . $ficha->id, function($excel) use($ficha){
+            $excel->sheet('Ficha', function($sheet) use ($ficha){
+                $sheet->loadView('ficha.excel', array('ficha' => $ficha));
+            });
+        })->download('xlsx');
     }
 }
