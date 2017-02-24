@@ -73,6 +73,9 @@
                         <a href="{{ route('ficha_diagnostico.show', $ficha->id) }}" class="btn btn-sm btn-danger" type="button">
                             <i class="fa fa-trash"></i>
                         </a>
+                        <a href="{{ route('ficha_diagnostico.edit', $ficha->id) }}" class="btn btn-sm btn-warning" type="button">
+                            <i class="fa fa-edit"></i>
+                        </a>
                     </div>
                 </td>
             </tr>

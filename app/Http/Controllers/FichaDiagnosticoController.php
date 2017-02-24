@@ -18,24 +18,25 @@ use Excel;
 
 class FichaDiagnosticoController extends Controller
 {
-    public function __construct(Request $request){
+    public function __construct(){
         Carbon::setLocale('es');
 
         // index: admin, tecnico, jefe
         // create, store: tecnico
         // edit, update: jefe
         // show, destroy: admin
-        $this->middleware('admin', ['only' => [
+
+        /*$this->middleware('admin', ['only' => [
             'show', 'destroy',
         ]]);
 
         $this->middleware('tecnico', ['only' => [
-            'create', 'store',
+            'create', 'store', 'edit', 'update',
         ]]);
 
         $this->middleware('jefe', ['only' => [
             'edit', 'update',
-        ]]);
+        ]]);*/
     }
     /**
      * Display a listing of the resource.
@@ -54,8 +55,12 @@ class FichaDiagnosticoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if($request->user()->type != 'tecnico'){
+            abort(404);
+        }
+
         $puntos = PuntoAtencion::join('unidades_organizacionales', 'puntos_atencion.unidad_organizacional_id', '=', 'unidades_organizacionales.id')->orderBy('puntos_atencion.nombre', 'ASC')->select('puntos_atencion.id', DB::raw('CONCAT(puntos_atencion.nombre, " [", unidades_organizacionales.nombre, "]") AS punto'))->pluck('punto', 'puntos_atencion.id');
 
         return view('ficha.create')->with('puntos', $puntos);
@@ -69,6 +74,10 @@ class FichaDiagnosticoController extends Controller
      */
     public function store(FichaDiagnosticoRequest $request)
     {
+        if($request->user()->type != 'tecnico'){
+            abort(404);
+        }
+
         try{
             $ficha = new FichaDiagnostico($request->all());
             $ficha->user_id = $request->user()->id;
@@ -89,8 +98,12 @@ class FichaDiagnosticoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        if($request->user()->type != 'admin'){
+            abort(404);
+        }
+
         $ficha = FichaDiagnostico::find($id);
 
         return view('ficha.show')->with('ficha', $ficha);
@@ -102,8 +115,12 @@ class FichaDiagnosticoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+        if($request->user()->type != 'tecnico' && $request->user()->type != 'jefe'){
+            abort(404);
+        }
+
         $ficha = FichaDiagnostico::find($id);
         $puntos = PuntoAtencion::join('unidades_organizacionales', 'puntos_atencion.unidad_organizacional_id', '=', 'unidades_organizacionales.id')->orderBy('puntos_atencion.nombre', 'ASC')->select('puntos_atencion.id', DB::raw('CONCAT(puntos_atencion.nombre, " [", unidades_organizacionales.nombre, "]") AS punto'))->pluck('punto', 'puntos_atencion.id');
 
@@ -119,10 +136,20 @@ class FichaDiagnosticoController extends Controller
      */
     public function update(FichaDiagnosticoRequest $request, $id)
     {
+        if($request->user()->type != 'tecnico' && $request->user()->type != 'jefe'){
+            abort(404);
+        }
+
         try{
             $ficha = FichaDiagnostico::find($id);
             $ficha->fill($request->all());
-            $ficha->revisadoPor()->attach($request->user()->id);
+
+            if($request->user()->type == 'tecnico'){
+                $ficha->user_id = $request->user()->id;
+            }elseif($request->user()->type == 'jefe'){
+                $ficha->revisadoPor()->attach($request->user()->id);
+            }
+
             $ficha->updated_at = Carbon::now();
 
             $ficha->update();
@@ -141,8 +168,12 @@ class FichaDiagnosticoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        if($request->user()->type != 'admin'){
+            abort(404);
+        }
+
         try{
             $ficha = FichaDiagnostico::find($id);
             $ficha->revisadoPor()->detach();
