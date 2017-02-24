@@ -95,6 +95,22 @@ class CreateFichasDiagnosticoTable extends Migration
             $table->foreign('user_id')->references('id')
                 ->on('users');
         });
+
+        Schema::create('registro_cambios', function (Blueprint $table) {
+            $table->string('campo');
+            $table->string('valor_anterior');
+            $table->string('valor_nuevo');
+            $table->dateTime('fecha_cambio');
+
+            /* Foreign Keys */
+            $table->integer('ficha_diagnostico_id')->unsigned();
+            $table->foreign('ficha_diagnostico_id')->references('id')
+                ->on('fichas_diagnostico');
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')
+                ->on('users');
+        });
     }
 
     /**
@@ -104,6 +120,7 @@ class CreateFichasDiagnosticoTable extends Migration
      */
     public function down()
     {
+        Schema::drop('registro_cambios');
         Schema::drop('ficha_diagnostico_user');
         Schema::drop('fichas_diagnostico');
     }

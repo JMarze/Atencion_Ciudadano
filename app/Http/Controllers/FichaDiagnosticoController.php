@@ -147,6 +147,7 @@ class FichaDiagnosticoController extends Controller
             if($request->user()->type == 'tecnico'){
                 $ficha->user_id = $request->user()->id;
             }elseif($request->user()->type == 'jefe'){
+                $ficha->revisadoPor()->detach();
                 $ficha->revisadoPor()->attach($request->user()->id);
             }
 
@@ -218,5 +219,17 @@ class FichaDiagnosticoController extends Controller
                 $sheet->loadView('ficha.excel', array('ficha' => $ficha));
             });
         })->download('xlsx');
+    }
+
+    /**
+     * See changes
+     *
+     * @param int $idFichaDiagnostico
+     * @return \Illuminate\Http\Response
+     */
+    public function cambios($idFichaDiagnostico){
+        $ficha = FichaDiagnostico::find($idFichaDiagnostico);
+
+        return view('ficha.cambio')->with('ficha', $ficha);
     }
 }
