@@ -43,9 +43,9 @@ class FichaDiagnosticoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $fichas = FichaDiagnostico::orderBy('updated_at', 'DESC')->get();
+        $fichas = FichaDiagnostico::join('puntos_atencion', 'puntos_atencion.id', '=', 'fichas_diagnostico.punto_atencion_id')->where('puntos_atencion.unidad_organizacional_id', '=', $request->user()->unidad_organizacional_id)->select('fichas_diagnostico.*')->orderBy('fichas_diagnostico.updated_at', 'DESC')->get();
 
         return view('ficha.index')->with('fichas', $fichas);
     }
@@ -61,7 +61,7 @@ class FichaDiagnosticoController extends Controller
             abort(404);
         }
 
-        $puntos = PuntoAtencion::join('unidades_organizacionales', 'puntos_atencion.unidad_organizacional_id', '=', 'unidades_organizacionales.id')->orderBy('puntos_atencion.nombre', 'ASC')->select('puntos_atencion.id', DB::raw('CONCAT(puntos_atencion.nombre, " [", unidades_organizacionales.nombre, "]") AS punto'))->pluck('punto', 'puntos_atencion.id');
+        $puntos = PuntoAtencion::join('unidades_organizacionales', 'puntos_atencion.unidad_organizacional_id', '=', 'unidades_organizacionales.id')->where('unidades_organizacionales.id', '=', $request->user()->unidad_organizacional_id)->orderBy('puntos_atencion.nombre', 'ASC')->select('puntos_atencion.id', DB::raw('CONCAT(puntos_atencion.nombre, " [", unidades_organizacionales.nombre, "]") AS punto'))->pluck('punto', 'puntos_atencion.id');
 
         return view('ficha.create')->with('puntos', $puntos);
     }
@@ -122,7 +122,7 @@ class FichaDiagnosticoController extends Controller
         }
 
         $ficha = FichaDiagnostico::find($id);
-        $puntos = PuntoAtencion::join('unidades_organizacionales', 'puntos_atencion.unidad_organizacional_id', '=', 'unidades_organizacionales.id')->orderBy('puntos_atencion.nombre', 'ASC')->select('puntos_atencion.id', DB::raw('CONCAT(puntos_atencion.nombre, " [", unidades_organizacionales.nombre, "]") AS punto'))->pluck('punto', 'puntos_atencion.id');
+        $puntos = PuntoAtencion::join('unidades_organizacionales', 'puntos_atencion.unidad_organizacional_id', '=', 'unidades_organizacionales.id')->where('unidades_organizacionales.id', '=', $request->user()->unidad_organizacional_id)->orderBy('puntos_atencion.nombre', 'ASC')->select('puntos_atencion.id', DB::raw('CONCAT(puntos_atencion.nombre, " [", unidades_organizacionales.nombre, "]") AS punto'))->pluck('punto', 'puntos_atencion.id');
 
         return view('ficha.edit')->with('ficha', $ficha)->with('puntos', $puntos);
     }

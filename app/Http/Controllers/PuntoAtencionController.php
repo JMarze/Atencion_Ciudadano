@@ -20,9 +20,9 @@ class PuntoAtencionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $puntos = PuntoAtencion::orderBy('nombre', 'ASC')->get();
+        $puntos = PuntoAtencion::where('unidad_organizacional_id', '=', $request->user()->unidad_organizacional_id)->orderBy('nombre', 'ASC')->get();
 
         return view('punto.index')->with('puntos', $puntos);
     }
@@ -32,9 +32,9 @@ class PuntoAtencionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $unidades = UnidadOrganizacional::orderBy('nombre', 'ASC')->pluck('nombre', 'id');
+        $unidades = UnidadOrganizacional::where('id', '=', $request->user()->unidad_organizacional_id)->orderBy('nombre', 'ASC')->pluck('nombre', 'id');
 
         return view('punto.create')->with('unidades', $unidades);
     }
@@ -82,10 +82,10 @@ class PuntoAtencionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $punto = PuntoAtencion::find($id);
-        $unidades = UnidadOrganizacional::orderBy('nombre', 'ASC')->pluck('nombre', 'id');
+        $unidades = UnidadOrganizacional::where('id', '=', $request->user()->unidad_organizacional_id)->orderBy('nombre', 'ASC')->pluck('nombre', 'id');
 
         return view('punto.edit')->with('punto', $punto)->with('unidades', $unidades);
     }
