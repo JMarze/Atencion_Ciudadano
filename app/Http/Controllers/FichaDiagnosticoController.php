@@ -46,7 +46,7 @@ class FichaDiagnosticoController extends Controller
     public function index(Request $request)
     {
         if($request->user()->type == 'admin'){
-            $fichas = FichaDiagnostico::orderBy('fichas_diagnostico.updated_at', 'DESC')->get();
+            $fichas = FichaDiagnostico::orderBy('updated_at', 'DESC')->get();
         }else{
             $fichas = FichaDiagnostico::join('puntos_atencion', 'puntos_atencion.id', '=', 'fichas_diagnostico.punto_atencion_id')->where('puntos_atencion.unidad_organizacional_id', '=', $request->user()->unidad_organizacional_id)->select('fichas_diagnostico.*')->orderBy('fichas_diagnostico.updated_at', 'DESC')->get();
         }

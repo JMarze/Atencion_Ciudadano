@@ -33,4 +33,12 @@ Route::group([], function () {
     Route::get('ficha_diagnostico/pdf/{fichaDignostico}', 'FichaDiagnosticoController@pdf')->name('ficha_diagnostico.pdf');
     Route::get('ficha_diagnostico/excel/{fichaDignostico}', 'FichaDiagnosticoController@excel')->name('ficha_diagnostico.excel');
     Route::get('ficha_diagnostico/cambios/{fichaDignostico}', 'FichaDiagnosticoController@cambios')->name('ficha_diagnostico.cambios');
+
+    /* Servidores Municipales */
+    Route::resource('servidor_municipal', 'ServidorMunicipalController');
+    Route::get('servidor_municipal/cambios/{servidorMunicipal}', 'ServidorMunicipalController@cambios')->name('servidor_municipal.cambios');
+
+    /* Reportes Dinámicos */
+    Route::get('reporte', 'ReporteController@index')->name('reporte.index');
+    Route::post('reporte', 'ReporteController@reporte')->name('reporte.reporte');
 });

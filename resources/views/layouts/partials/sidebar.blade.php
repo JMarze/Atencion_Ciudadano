@@ -59,6 +59,18 @@
                 </a>
             </li>
 
+            <li id="servidores">
+                <a href="{{ route('servidor_municipal.index') }}">
+                    <i class='fa fa-user-plus'></i> <span>Servidores Municipales</span>
+                </a>
+            </li>
+
+            <li id="reportes">
+                <a href="{{ route('reporte.index') }}">
+                    <i class='fa fa-file-o'></i> <span>Reportes</span>
+                </a>
+            </li>
+
             <!--<li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
