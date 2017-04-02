@@ -65,7 +65,7 @@ class FichaDiagnosticoController extends Controller
             abort(404);
         }
 
-        $puntos = PuntoAtencion::join('unidades_organizacionales', 'puntos_atencion.unidad_organizacional_id', '=', 'unidades_organizacionales.id')->where('unidades_organizacionales.id', '=', $request->user()->unidad_organizacional_id)->orderBy('puntos_atencion.nombre', 'ASC')->select('puntos_atencion.id', DB::raw('CONCAT(puntos_atencion.nombre, " [", unidades_organizacionales.nombre, "]") AS punto'))->pluck('punto', 'puntos_atencion.id');
+        $puntos = PuntoAtencion::join('unidades_organizacionales', 'puntos_atencion.unidad_organizacional_id', '=', 'unidades_organizacionales.id')->where('unidades_organizacionales.id', '=', $request->user()->unidad_organizacional_id)->orderBy('puntos_atencion.nombre', 'ASC')->select('puntos_atencion.id', DB::raw('CONCAT(puntos_atencion.nombre, " [", unidades_organizacionales.nombre, "]-", puntos_atencion.tipo) AS punto'))->pluck('punto', 'puntos_atencion.id');
 
         return view('ficha.create')->with('puntos', $puntos);
     }

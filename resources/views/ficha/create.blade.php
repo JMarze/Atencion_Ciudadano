@@ -42,5 +42,14 @@
 @parent
 <script>
     $('#fichas').addClass('active');
+
+    $('select[name="punto_atencion_id"]').on('change', function(){
+        var tipo = $('select[name="punto_atencion_id"] :selected').text().split('-')[1];
+        if(tipo == 'plataforma'){
+            $('.plataforma').show();
+        }else{
+            $('.plataforma').hide();
+        }
+    });
 </script>
 @endsection

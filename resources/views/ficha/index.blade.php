@@ -42,6 +42,8 @@
                     <span class="label label-success">servicio</span>
                     @elseif($ficha->puntoAtencion->tipo == 'tramite')
                     <span class="label label-primary">trámite</span>
+                    @elseif($ficha->puntoAtencion->tipo == 'plataforma')
+                    <span class="label label-info">plataforma</span>
                     @endif
                 </td>
                 <td>

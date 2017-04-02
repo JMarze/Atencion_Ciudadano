@@ -39,6 +39,8 @@
                     <span class="label label-success">servicio</span>
                     @elseif($punto->tipo == 'tramite')
                     <span class="label label-primary">trámite</span>
+                    @elseif($punto->tipo == 'plataforma')
+                    <span class="label label-info">plataforma</span>
                     @endif
                 </td>
                 <td>

@@ -25,7 +25,7 @@ class PuntoAtencionRequest extends Request
     {
         return [
             'nombre' => 'required|string|between:3,250',
-            'tipo' => 'required|in:servicio,tramite',
+            'tipo' => 'required|in:servicio,tramite,plataforma',
             'unidad_organizacional_id' => 'required|exists:unidades_organizacionales,id',
         ];
     }

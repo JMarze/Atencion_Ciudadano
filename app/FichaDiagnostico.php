@@ -15,7 +15,7 @@ class FichaDiagnostico extends Model
 
     protected $table = 'fichas_diagnostico';
 
-    protected $fillable = ['zona', 'calle', 'numero', 'nombre_edificio', 'piso', 'referencia', 'funcionarios_linea_1', 'funcionarios_linea_2', 'lunes_viernes_de', 'lunes_viernes_a', 'sabado_de', 'sabado_a', 'otro', 'tiene_senaletica', 'cantidad_senaletica', 'estado_senaletica', 'tiene_paneles', 'cantidad_paneles', 'estado_paneles', 'tiene_iluminacion', 'cantidad_iluminacion', 'estado_iluminacion', 'tiene_limpieza_ciudadano', 'cantidad_limpieza_ciudadano', 'estado_limpieza_ciudadano', 'tiene_limpieza_operadores', 'cantidad_limpieza_operadores', 'estado_limpieza_operadores', 'tiene_asientos_publico', 'cantidad_parados_asientos_publico', 'cantidad_sentados_asientos_publico', 'estado_asientos_publico', 'tiene_asientos_usuario', 'cantidad_parados_asientos_usuario', 'cantidad_sentados_asientos_usuario', 'estado_asientos_usuario', 'brinda_escritorio', 'brinda_folletos', 'brinda_web', 'brinda_ventanilla', 'brinda_fotocopias', 'brinda_telefono', 'brinda_meson', 'brinda_tripticos', 'brinda_verbal', 'requerimientos', 'punto_atencion_id'];
+    protected $fillable = ['zona', 'calle', 'numero', 'nombre_edificio', 'piso', 'referencia', 'funcionarios_linea_1', 'funcionarios_linea_2', 'lunes_viernes_de', 'lunes_viernes_a', 'sabado_de', 'sabado_a', 'otro', 'tiene_senaletica', 'cantidad_senaletica', 'estado_senaletica', 'tiene_paneles', 'cantidad_paneles', 'estado_paneles', 'tiene_iluminacion', 'cantidad_iluminacion', 'estado_iluminacion', 'tiene_limpieza_ciudadano', 'cantidad_limpieza_ciudadano', 'estado_limpieza_ciudadano', 'tiene_limpieza_operadores', 'cantidad_limpieza_operadores', 'estado_limpieza_operadores', 'tiene_asientos_publico', 'cantidad_parados_asientos_publico', 'cantidad_sentados_asientos_publico', 'estado_asientos_publico', 'tiene_asientos_usuario', 'cantidad_parados_asientos_usuario', 'cantidad_sentados_asientos_usuario', 'estado_asientos_usuario', 'brinda_escritorio', 'brinda_folletos', 'brinda_web', 'brinda_ventanilla', 'brinda_fotocopias', 'brinda_telefono', 'brinda_meson', 'brinda_tripticos', 'brinda_verbal', 'requerimientos', 'tiene_facilitador_usuario', 'tiene_sistema_fichas', 'tiene_asientos_espera', 'tiene_pantallas_turno', 'tiene_rampa_acceso', 'atencion_preferencial', 'observaciones', 'punto_atencion_id'];
 
     /* Mutators */
     public function setZonaAttribute($value){
@@ -439,6 +439,69 @@ class FichaDiagnostico extends Model
             }
         }
         $this->attributes['punto_atencion_id'] = $value;
+    }
+
+    public function setTieneFacilitadorUsuarioAttribute($value){
+        if(isset($this->attributes['tiene_facilitador_usuario']) && isset($this->original['tiene_facilitador_usuario'])){
+            if($this->original['tiene_facilitador_usuario'] != $value){
+                $this->cambioPor()->attach(Auth::user()->id, ['campo' => 'tiene_facilitador_usuario', 'valor_anterior' => $this->original['tiene_facilitador_usuario'], 'valor_nuevo' => $value, 'fecha_cambio' => Carbon::now()]);
+            }
+        }
+        $this->attributes['tiene_facilitador_usuario'] = $value;
+    }
+
+    public function setTieneSistemaFichasAttribute($value){
+        if(isset($this->attributes['tiene_sistema_fichas']) && isset($this->original['tiene_sistema_fichas'])){
+            if($this->original['tiene_sistema_fichas'] != $value){
+                $this->cambioPor()->attach(Auth::user()->id, ['campo' => 'tiene_sistema_fichas', 'valor_anterior' => $this->original['tiene_sistema_fichas'], 'valor_nuevo' => $value, 'fecha_cambio' => Carbon::now()]);
+            }
+        }
+        $this->attributes['tiene_sistema_fichas'] = $value;
+    }
+
+    public function setTieneAsientosEsperaAttribute($value){
+        if(isset($this->attributes['tiene_asientos_espera']) && isset($this->original['tiene_asientos_espera'])){
+            if($this->original['tiene_asientos_espera'] != $value){
+                $this->cambioPor()->attach(Auth::user()->id, ['campo' => 'tiene_asientos_espera', 'valor_anterior' => $this->original['tiene_asientos_espera'], 'valor_nuevo' => $value, 'fecha_cambio' => Carbon::now()]);
+            }
+        }
+        $this->attributes['tiene_asientos_espera'] = $value;
+    }
+
+    public function setTienePantallasTurnoAttribute($value){
+        if(isset($this->attributes['tiene_pantallas_turno']) && isset($this->original['tiene_pantallas_turno'])){
+            if($this->original['tiene_pantallas_turno'] != $value){
+                $this->cambioPor()->attach(Auth::user()->id, ['campo' => 'tiene_pantallas_turno', 'valor_anterior' => $this->original['tiene_pantallas_turno'], 'valor_nuevo' => $value, 'fecha_cambio' => Carbon::now()]);
+            }
+        }
+        $this->attributes['tiene_pantallas_turno'] = $value;
+    }
+
+    public function setTieneRampaAccesoAttribute($value){
+        if(isset($this->attributes['tiene_rampa_acceso']) && isset($this->original['tiene_rampa_acceso'])){
+            if($this->original['tiene_rampa_acceso'] != $value){
+                $this->cambioPor()->attach(Auth::user()->id, ['campo' => 'tiene_rampa_acceso', 'valor_anterior' => $this->original['tiene_rampa_acceso'], 'valor_nuevo' => $value, 'fecha_cambio' => Carbon::now()]);
+            }
+        }
+        $this->attributes['tiene_rampa_acceso'] = $value;
+    }
+
+    public function setAtencionPreferencialAttribute($value){
+        if(isset($this->attributes['atencion_preferencial']) && isset($this->original['atencion_preferencial'])){
+            if($this->original['atencion_preferencial'] != $value){
+                $this->cambioPor()->attach(Auth::user()->id, ['campo' => 'atencion_preferencial', 'valor_anterior' => $this->original['atencion_preferencial'], 'valor_nuevo' => $value, 'fecha_cambio' => Carbon::now()]);
+            }
+        }
+        $this->attributes['atencion_preferencial'] = $value;
+    }
+
+    public function setObservacionesAttribute($value){
+        if(isset($this->attributes['observaciones']) && isset($this->original['observaciones'])){
+            if($this->original['observaciones'] != $value){
+                $this->cambioPor()->attach(Auth::user()->id, ['campo' => 'observaciones', 'valor_anterior' => $this->original['observaciones'], 'valor_nuevo' => $value, 'fecha_cambio' => Carbon::now()]);
+            }
+        }
+        $this->attributes['observaciones'] = $value;
     }
 
     /* Relationships */

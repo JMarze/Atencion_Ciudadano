@@ -15,7 +15,7 @@ class CreatePuntosAtencionTable extends Migration
         Schema::create('puntos_atencion', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->enum('tipo', ['servicio', 'tramite']);
+            $table->enum('tipo', ['servicio', 'tramite', 'plataforma']);
 
             /* Foreign Key */
             $table->integer('unidad_organizacional_id')->unsigned();

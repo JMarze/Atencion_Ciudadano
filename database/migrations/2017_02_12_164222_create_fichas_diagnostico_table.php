@@ -72,6 +72,15 @@ class CreateFichasDiagnosticoTable extends Migration
 
             $table->text('requerimientos')->nullable();
 
+            $table->boolean('tiene_facilitador_usuario')->default(false);
+            $table->boolean('tiene_sistema_fichas')->default(false);
+            $table->boolean('tiene_asientos_espera')->default(false);
+            $table->boolean('tiene_pantallas_turno')->default(false);
+            $table->boolean('tiene_rampa_acceso')->default(false);
+
+            $table->text('atencion_preferencial')->nullable();
+            $table->text('observaciones')->nullable();
+
             /* Foreign Keys */
             $table->integer('punto_atencion_id')->unsigned();
             $table->foreign('punto_atencion_id')->references('id')

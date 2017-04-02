@@ -362,4 +362,79 @@
             </div>
         </td>
     </tr>
+
+    <tr class="plataforma" style="display:none;">
+        <th colspan="4" style="width:40%;">La Plataforma de Atención tiene:</th>
+        <th colspan="6" style="width:60%;">TIENE</th>
+    </tr>
+
+    <tr class="plataforma" style="display:none;">
+        <th colspan="4" style="width:40%;">Facilitador ciudadano (información)</th>
+        <td colspan="6" style="width:60%;">
+            <div class="form-group has-feedback{{ $errors->has('tiene_facilitador_usuario')?' has-error':'' }}">
+                {!! Form::select('tiene_facilitador_usuario', [true => 'Si', false => 'No'], old('tiene_facilitador_usuario'), ['class' => 'form-control']) !!}
+                <i class="fa fa-check-square form-control-feedback"></i>
+            </div>
+        </td>
+    </tr>
+
+    <tr class="plataforma" style="display:none;">
+        <th colspan="4" style="width:40%;">Sistema de fichas</th>
+        <td colspan="6" style="width:60%;">
+            <div class="form-group has-feedback{{ $errors->has('tiene_sistema_fichas')?' has-error':'' }}">
+                {!! Form::select('tiene_sistema_fichas', [true => 'Si', false => 'No'], old('tiene_sistema_fichas'), ['class' => 'form-control']) !!}
+                <i class="fa fa-check-square form-control-feedback"></i>
+            </div>
+        </td>
+    </tr>
+
+    <tr class="plataforma" style="display:none;">
+        <th colspan="4" style="width:40%;">Asientos de espera</th>
+        <td colspan="6" style="width:60%;">
+            <div class="form-group has-feedback{{ $errors->has('tiene_asientos_espera')?' has-error':'' }}">
+                {!! Form::select('tiene_asientos_espera', [true => 'Si', false => 'No'], old('tiene_asientos_espera'), ['class' => 'form-control']) !!}
+                <i class="fa fa-check-square form-control-feedback"></i>
+            </div>
+        </td>
+    </tr>
+
+    <tr class="plataforma" style="display:none;">
+        <th colspan="4" style="width:40%;">Pantallas de llamado de turnos</th>
+        <td colspan="6" style="width:60%;">
+            <div class="form-group has-feedback{{ $errors->has('tiene_pantallas_turno')?' has-error':'' }}">
+                {!! Form::select('tiene_pantallas_turno', [true => 'Si', false => 'No'], old('tiene_pantallas_turno'), ['class' => 'form-control']) !!}
+                <i class="fa fa-check-square form-control-feedback"></i>
+            </div>
+        </td>
+    </tr>
+
+    <tr class="plataforma" style="display:none;">
+        <th colspan="4" style="width:40%;">Rampas de acceso a la plataforma</th>
+        <td colspan="6" style="width:60%;">
+            <div class="form-group has-feedback{{ $errors->has('tiene_rampa_acceso')?' has-error':'' }}">
+                {!! Form::select('tiene_rampa_acceso', [true => 'Si', false => 'No'], old('tiene_rampa_acceso'), ['class' => 'form-control']) !!}
+                <i class="fa fa-check-square form-control-feedback"></i>
+            </div>
+        </td>
+    </tr>
+
+    <tr class="plataforma" style="display:none;">
+        <th colspan="4" style="width:40%;">¿Cómo brinda los servicios con atención preferencial en su plataforma? (Adulto Mayor, Mujeres embarazadas o con niños, etc.)</th>
+        <td colspan="6" style="width:60%;">
+            <div class="form-group has-feedback{{ $errors->has('atencion_preferencial')?' has-error':'' }}">
+                {!! Form::text('atencion_preferencial', old('atencion_preferencial'), ['class' => 'form-control']) !!}
+                <i class="fa fa-file form-control-feedback"></i>
+            </div>
+        </td>
+    </tr>
+
+    <tr class="plataforma" style="display:none;">
+        <th colspan="4" style="width:40%;">Observaciones</th>
+        <td colspan="6" style="width:60%;">
+            <div class="form-group has-feedback{{ $errors->has('observaciones')?' has-error':'' }}">
+                {!! Form::text('observaciones', old('observaciones'), ['class' => 'form-control']) !!}
+                <i class="fa fa-file form-control-feedback"></i>
+            </div>
+        </td>
+    </tr>
 </table>

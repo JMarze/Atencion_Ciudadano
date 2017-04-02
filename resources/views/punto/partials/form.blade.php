@@ -9,6 +9,6 @@
 </div>
 
 <div class="form-group has-feedback{{ $errors->has('tipo')?' has-error':'' }}">
-    {!! Form::select('tipo', ['servicio' => 'Servicio', 'tramite' => 'Trámite'], old('tipo'), ['class' => 'form-control', 'placeholder' => 'Tipo']) !!}
+    {!! Form::select('tipo', ['servicio' => 'Servicio', 'tramite' => 'Trámite', 'plataforma' => 'Plataforma'], old('tipo'), ['class' => 'form-control', 'placeholder' => 'Tipo']) !!}
     <i class="fa fa-navicon form-control-feedback"></i>
 </div>

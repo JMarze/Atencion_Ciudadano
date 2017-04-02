@@ -20,5 +20,25 @@ class UsersTableSeeder extends Seeder
 
             'unidad_organizacional_id' => 1,
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Técnico',
+            'username' => 'Tec',
+            'email' => 'tecnico@gmail.com',
+            'type' => 'tecnico',
+            'password' => bcrypt('123456'),
+
+            'unidad_organizacional_id' => 1,
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Jefe',
+            'username' => 'Jefe',
+            'email' => 'jefe@gmail.com',
+            'type' => 'jefe',
+            'password' => bcrypt('123456'),
+
+            'unidad_organizacional_id' => 1,
+        ]);
     }
 }
